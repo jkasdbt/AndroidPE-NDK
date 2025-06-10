@@ -262,7 +262,7 @@ else
 fi
 
 if [[ $ndk_installed == true && $cmake_installed == true ]]; then
-	echo 'Installation Finished. NDK has been installed successfully, please restart AndroidIDE!'
+	echo 'Installation Finished. NDK has been installed successfully, please restart AndroidPE!'
 else
 	echo 'NDK and cmake has been does not installed successfully!'
 fi
