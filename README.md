@@ -4,7 +4,7 @@ This bash script will install NDK to [AndroidPE](https://github.com/jkasdbt/Andr
 1. Download the NDK installation script:
 
    ```bash
-   cd && apt upgrade && apt install wget && wget https://github.com/jkasdbt/AndroidPE-NDK/blob/main/ndk-install.sh --no-verbose --show-progress -N && chmod +x ndk-install.sh && bash ndk-install.sh
+   cd && apt upgrade && apt install wget && wget https://github.com/jkasdbt/AndroidPE-NDK/raw/main/ndk-install.sh --no-verbose --show-progress -N && chmod +x ndk-install.sh && bash ndk-install.sh
    ```
 
 2. Choose your required NDK version from the list by entering the numbers provided and wait for the installation to complete.
