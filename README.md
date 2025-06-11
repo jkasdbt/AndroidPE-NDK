@@ -5,7 +5,6 @@ This bash script will install NDK to [AndroidPE](https://github.com/jkasdbt/Andr
 1. Use this to start the process :
 ```bash
 rkb install ndk # will show all versions (requires making a choice).
-rkb install ndk r28b # will directly install the version if available .
 ```
 
 2. Choose your required NDK version from the list by entering the numbers provided and wait for the installation to complete.
