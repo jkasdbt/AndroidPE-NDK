@@ -1,6 +1,6 @@
 # AndroidPE-NDK
 This bash script will install NDK to [AndroidPE](https://github.com/jkasdbt/AndroidPE).
-### How to install Ndk 
+### How to install
 
 1. Use this to start the process :
 ```bash
@@ -69,7 +69,7 @@ dependencies {
 ```
 
 Thanks to:
-- [x] [MrIkso](https://github.com/MrIkso) : owner see ([repo](https://github.com/MrIkso/AndroidIDE-NDK))
+- [x] [MrIkso](https://github.com/MrIkso) : Owner. ([repo](https://github.com/MrIkso/AndroidIDE-NDK))
 - [x] [jzinferno](https://github.com/jzinferno/termux-ndk)
 - [x] [lzhiyong](https://github.com/lzhiyong/termux-ndk)
 - [x] [HomuHomu833](https://github.com/HomuHomu833/android-ndk-custom)
