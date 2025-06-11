@@ -1,11 +1,12 @@
 # AndroidPE-NDK
 This bash script will install NDK to [AndroidPE](https://github.com/jkasdbt/AndroidPE).
-### How to install Ndk to [AndroidPE](https://github.com/jkasdbt/AndroidPE).
-1. Download the NDK installation script:
+### How to install Ndk 
 
-   ```bash
-   cd && apt upgrade && apt install wget && wget https://github.com/jkasdbt/AndroidPE-NDK/raw/main/ndk-install.sh --no-verbose --show-progress -N && chmod +x ndk-install.sh && bash ndk-install.sh
-   ```
+1. Use this to start the process :
+```bash
+rkb install ndk # will show all versions (requires making a choice).
+rkb install ndk r28b # will directly install the version if available .
+```
 
 2. Choose your required NDK version from the list by entering the numbers provided and wait for the installation to complete.
 
@@ -18,21 +19,21 @@ This bash script will install NDK to [AndroidPE](https://github.com/jkasdbt/Andr
 
 You can find the downloaded ndk version names by running:
 ```bash
-ls $HOME/android-sdk/ndk
+cd $HOME/android-sdk/ndk
 ```
 
-(⚠️ Warning: CMake works on Android 10+ Only)
+(⚠️ Warning: CMake works on Android 10+ Only)will directly install the version if available.
 
 Example:
 
-```
+```groovy
 plugins {
     id 'com.android.application'
 }
 
 android {
-    compileSdk 33
-    buildToolsVersion "33.0.0"
+    compileSdk 34
+    buildToolsVersion "34.0.0"
     ndkVersion "28.1.13356709"
 
     defaultConfig {
@@ -63,11 +64,12 @@ android {
 }
 
 dependencies {
-   ...
+   // ...
 }
 ```
 
 Thanks to:
+- [x] [MrIkso](https://github.com/MrIkso) : owner see ([repo](https://github.com/MrIkso/AndroidIDE-NDK))
 - [x] [jzinferno](https://github.com/jzinferno/termux-ndk)
 - [x] [lzhiyong](https://github.com/lzhiyong/termux-ndk)
 - [x] [HomuHomu833](https://github.com/HomuHomu833/android-ndk-custom)
