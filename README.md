@@ -1,29 +1,33 @@
 # AndroidPE-NDK
 This bash script will install NDK to [AndroidPE](https://github.com/jkasdbt/AndroidPE).
-### How to install
+<br>
+<br>
+<br>
 
-1. Use this to start the process :
+### How to install
+1. Use this to start the process : _will show all versions (requires making a choice)_.
 ```bash
-rkb install ndk # will show all versions (requires making a choice).
+rkb install ndk
 ```
 
 2. Choose your required NDK version from the list by entering the numbers provided and wait for the installation to complete.
 
 3. After installation, edit or set `ndkVersion` in your `build.gradle` or `build.gradle.kts` file as follows:
-
    - If you choose `r24`, set `ndkVersion` to `"24.0.8215888"`.
    - If you choose `r28b`, set `ndkVersion` to `"28.1.13356709"`.
    - If you choose `r29-beta1`, set `ndkVersion` to `"29.0.13113456"`.
-
 
 You can find the downloaded ndk version names by running:
 ```bash
 cd $HOME/android-sdk/ndk
 ```
+<br>
+<br>
+<br>
 
-(⚠️ Warning: CMake works on Android 10+ Only)will directly install the version if available.
+⚠️ Warning: CMake works on Android 10+ Only.
 
-Example:
+   » example:
 
 ```groovy
 plugins {
@@ -66,9 +70,12 @@ dependencies {
    // ...
 }
 ```
+<br>
+<br>
+<br>
 
 Thanks to:
-- [x] [MrIkso](https://github.com/MrIkso) : Owner. ([repo](https://github.com/MrIkso/AndroidIDE-NDK))
+- [x] [MrIkso](https://github.com/MrIkso) : Owner ([repo](https://github.com/MrIkso/AndroidIDE-NDK))
 - [x] [jzinferno](https://github.com/jzinferno/termux-ndk)
 - [x] [lzhiyong](https://github.com/lzhiyong/termux-ndk)
 - [x] [HomuHomu833](https://github.com/HomuHomu833/android-ndk-custom)
