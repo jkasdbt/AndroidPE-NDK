@@ -13,9 +13,9 @@ rkb install ndk
 2. Choose your required NDK version from the list by entering the numbers provided and wait for the installation to complete.
 
 3. After installation, edit or set `ndkVersion` in your `build.gradle` or `build.gradle.kts` file as follows:
-   - If you choose `r24`, set `ndkVersion` to `"24.0.8215888"`.
-   - If you choose `r28b`, set `ndkVersion` to `"28.1.13356709"`.
-   - If you choose `r29-beta1`, set `ndkVersion` to `"29.0.13113456"`.
+   - If you choose `r27d`, set `ndkVersion` to `"27.3.13750724"`.
+   - If you choose `r28c`, set `ndkVersion` to `"28.2.13676358"`.
+   - If you choose `r29-beta2`, set `ndkVersion` to `"29.0.13599879"`.
 <br>
 <br>
 <br>
@@ -38,14 +38,14 @@ plugins {
 }
 
 android {
-    compileSdk 34
-    buildToolsVersion "34.0.0"
-    ndkVersion "28.1.13356709"
+    compileSdk 36
+    buildToolsVersion "35.0.1"
+    ndkVersion "28.2.13676358"
 
     defaultConfig {
         applicationId "com.myapplication"
         minSdk 26
-        targetSdk 34
+        targetSdk 36
         versionCode 1
         versionName "1.0"
     }
@@ -58,8 +58,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
     }
 
     externalNativeBuild {
@@ -79,6 +79,4 @@ dependencies {
 
 Thanks to:
 - [x] [MrIkso](https://github.com/MrIkso) : Owner ([repo](https://github.com/MrIkso/AndroidIDE-NDK))
-- [x] [jzinferno](https://github.com/jzinferno/termux-ndk)
-- [x] [lzhiyong](https://github.com/lzhiyong/termux-ndk)
 - [x] [HomuHomu833](https://github.com/HomuHomu833/android-ndk-custom)
