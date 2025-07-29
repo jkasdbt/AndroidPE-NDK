@@ -4,6 +4,7 @@
 
 # Modified by JKas(jkasdbt) for AndroidPE
 
+
 # --- loading default presets ---
 . $SCRIPTS/clrs.sh
 
@@ -19,8 +20,6 @@ ndk_ver_name=""
 ndk_file_name=""
 ndk_installed=false
 cmake_installed=false
-is_lzhiyong_ndk=false
-is_musl_ndk=false
 
 run_install_cmake() {
 	download_cmake 3.10.2
@@ -41,26 +40,6 @@ download_ndk() {
 	# download NDK
 	log "Downloading NDK ${BCYAN}$1..."
 	wget $2 --no-verbose --show-progress -N
-}
-
-fix_ndk() {
-	# create missing link
-	if [ -d "$ndk_dir" ]; then
-		_info "Creating missing links..."
-		cd "$ndk_dir"/toolchains/llvm/prebuilt || exit
-		ln -s linux-aarch64 linux-x86_64
-		cd "$ndk_dir"/prebuilt || exit
-		ln -s linux-aarch64 linux-x86_64
-		cd "$install_dir" || exit
-
-		# patching cmake config
-		_info "Patching cmake configs..."
-		sed -i 's/if(CMAKE_HOST_SYSTEM_NAME STREQUAL Linux)/if(CMAKE_HOST_SYSTEM_NAME STREQUAL Android)\nset(ANDROID_HOST_TAG linux-aarch64)\nelseif(CMAKE_HOST_SYSTEM_NAME STREQUAL Linux)/g' "$ndk_dir"/build/cmake/android-legacy.toolchain.cmake
-		sed -i 's/if(CMAKE_HOST_SYSTEM_NAME STREQUAL Linux)/if(CMAKE_HOST_SYSTEM_NAME STREQUAL Android)\nset(ANDROID_HOST_TAG linux-aarch64)\nelseif(CMAKE_HOST_SYSTEM_NAME STREQUAL Linux)/g' "$ndk_dir"/build/cmake/android.toolchain.cmake
-		ndk_installed=true
-	else
-		log "NDK does not exists."
-	fi
 }
 
 fix_ndk_musl() {
@@ -89,7 +68,6 @@ installing_cmake() {
 		rm "$cmake_file"
 		# set executable permission for cmake
 		chmod -R +x "$cmake_dir"/"$cmake_version"/bin
-
 		cmake_installed=true
 	else
 		_warning "$cmake_file does not exists."
@@ -136,10 +114,10 @@ cd "$install_dir" || exit
 # checking if previous installed NDK and cmake
 
 ndk_dir="$ndk_base_dir/$ndk_ver"
-ndk_file_name="android-ndk-$ndk_ver_name-aarch64-linux-android.tar.xz"
+ndk_file_name="android-ndk-$ndk_ver_name-aarch64-linux-musl.tar.xz"
 
 if [ -d "$ndk_dir" ]; then
-	log "${BOLD}$ndk_dir exists. Deleting NDK $ndk_ver..."
+	log "$ndk_dir exists. ${BOLD}Deleting NDK $ndk_ver..."
 	rm -rf "$ndk_dir"
 else
 	info "i" "${BOLD}NDK does not exists."
@@ -169,11 +147,7 @@ download_ndk "$ndk_file_name" "https://github.com/HomuHomu833/android-ndk-custom
 
 if [ -f "$ndk_file_name" ]; then
 	echo "Unziping NDK $ndk_ver_name..."
-	if [[ $is_musl_ndk == true ]]; then
-		tar --no-same-owner -xf "$ndk_file_name" --warning=no-unknown-keyword
-	else
-		unzip -qq "$ndk_file_name"
-	fi
+	tar --no-same-owner -xf "$ndk_file_name" --warning=no-unknown-keyword
 	rm $ndk_file_name
 
 	# moving NDK to Android SDK directory
