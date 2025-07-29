@@ -69,6 +69,8 @@ installing_cmake() {
 		# set executable permission for cmake
 		chmod -R +x "$cmake_dir"/"$cmake_version"/bin
 		cmake_installed=true
+        _info "unziping cmake finished successfully"
+        log ""
 	else
 		_warning "$cmake_file does not exists."
 	fi
@@ -146,7 +148,8 @@ fi
 download_ndk "$ndk_file_name" "https://github.com/HomuHomu833/android-ndk-custom/releases/download/$ndk_ver_name/$ndk_file_name"
 
 if [ -f "$ndk_file_name" ]; then
-	echo "Unziping NDK $ndk_ver_name..."
+	_info "Unziping NDK $ndk_ver_name..."
+    log ""
 	tar --no-same-owner -xf "$ndk_file_name" --warning=no-unknown-keyword
 	rm $ndk_file_name
 
@@ -160,6 +163,8 @@ if [ -f "$ndk_file_name" ]; then
 	fi
 
 	fix_ndk_musl
+    _info "unziping NDK '$ndk_ver_name' finished successfully"
+    log ""
 else
 	log "$ndk_file_name does not exists."
 fi
