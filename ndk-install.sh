@@ -190,7 +190,7 @@ ndk_dir="$ndk_base_dir/$ndk_ver"
 if [[ $is_musl_ndk == true ]]; then
 	ndk_file_name="android-ndk-$ndk_ver_name-aarch64-linux-musl.tar.xz"
 else
-	ndk_file_name="android-ndk-$ndk_ver_name-aarch64.zip"
+	ndk_file_name="android-ndk-$ndk_ver_name-aarch64-linux-android.tar.xz"
 fi
 
 if [ -d "$ndk_dir" ]; then
