@@ -179,7 +179,7 @@ else
 fi
 
 if [[ $ndk_installed == true && $cmake_installed == true ]]; then
-	log "${SUCCESS}Installation Finished. NDK has been installed successfully"
+	_success "Installation Finished. NDK has been installed successfully"
 else
-	log "${WARNING}NDK and cmake has been does not installed successfully!"
+	_warning "NDK and cmake has been does not installed successfully!"
 fi
