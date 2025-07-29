@@ -1,11 +1,10 @@
 #!/bin/bash
-# Script to install NDK into AndroidIDE
+# Script to install NDK
 # Author MrIkso
 
-# Modified by JKas for AndroidPE
-# This script will only work on AndroidPE due to some modifications that have been applied.
-# If you intend to use it, then also integrate the "clrs.sh" script file.
+# Modified by JKas(jkasdbt) for AndroidPE
 
+# --- loading default presets ---
 . $SCRIPTS/clrs.sh
 
 
@@ -40,7 +39,7 @@ download_cmake() {
 
 download_ndk() {
 	# download NDK
-	log "Downloading NDK ${BCYAN}$1...${NC}"
+	log "Downloading NDK ${BCYAN}$1..."
 	wget $2 --no-verbose --show-progress -N
 }
 
@@ -55,7 +54,7 @@ fix_ndk() {
 		cd "$install_dir" || exit
 
 		# patching cmake config
-		info "!!" "Patching cmake configs..."
+		_info "Patching cmake configs..."
 		sed -i 's/if(CMAKE_HOST_SYSTEM_NAME STREQUAL Linux)/if(CMAKE_HOST_SYSTEM_NAME STREQUAL Android)\nset(ANDROID_HOST_TAG linux-aarch64)\nelseif(CMAKE_HOST_SYSTEM_NAME STREQUAL Linux)/g' "$ndk_dir"/build/cmake/android-legacy.toolchain.cmake
 		sed -i 's/if(CMAKE_HOST_SYSTEM_NAME STREQUAL Linux)/if(CMAKE_HOST_SYSTEM_NAME STREQUAL Android)\nset(ANDROID_HOST_TAG linux-aarch64)\nelseif(CMAKE_HOST_SYSTEM_NAME STREQUAL Linux)/g' "$ndk_dir"/build/cmake/android.toolchain.cmake
 		ndk_installed=true
@@ -93,143 +92,83 @@ installing_cmake() {
 
 		cmake_installed=true
 	else
-		_warning "cmake_file does not exists."
+		_warning "$cmake_file does not exists."
 	fi
 }
 
 log "Select the NDK version you need install : "
 
-select item in r17c r18b r19c r20b r21e r22b r23b r24 r26b r27b r27c r28b r29-beta1 Quit; do
+select item in r26d r27d r28c r29-beta2 Quit; do
 	case $item in
-	"r17c")
-		ndk_ver="17.2.4988734"
-		ndk_ver_name="r17c"
+  	"r26d")
+		ndk_ver="26.3.11579264"
+		ndk_ver_name="r26d"
 		break
 		;;
-	"r18b")
-		ndk_ver="18.1.5063045"
-		ndk_ver_name="r18b"
+  	"r27d")
+		ndk_ver="27.3.13750724"
+		ndk_ver_name="r27d"
 		break
 		;;
-	"r19c")
-		ndk_ver="19.2.5345600"
-		ndk_ver_name="r19c"
+  	"r28c")
+		ndk_ver="28.2.13676358"
+		ndk_ver_name="r28c"
 		break
 		;;
-	"r20b")
-		ndk_ver="20.1.5948944"
-		ndk_ver_name="r20b"
-		break
-		;;
-	"r21e")
-		ndk_ver="21.4.7075529"
-		ndk_ver_name="r21e"
-		break
-		;;
-	"r22b")
-		ndk_ver="22.1.7171670"
-		ndk_ver_name="r22b"
-		break
-		;;
-	"r23b")
-		ndk_ver="23.2.8568313"
-		ndk_ver_name="r23b"
-		break
-		;;
-	"r24")
-		ndk_ver="24.0.8215888"
-		ndk_ver_name="r24"
-		break
-		;;
-	"r26b")
-		ndk_ver="26.1.10909125"
-		ndk_ver_name="r26b"
-		is_lzhiyong_ndk=true
-		break
-		;;
-  	"r27b")
-		ndk_ver="27.1.12297006"
-		ndk_ver_name="r27b"
-		is_lzhiyong_ndk=true
-		break
-		;;
-  	"r27c")
-		ndk_ver="27.2.12479018"
-		ndk_ver_name="r27c"
-		is_musl_ndk=true
-		break
-		;;
-  	"r28b")
-		ndk_ver="28.1.13356709"
-		ndk_ver_name="r28b"
-		is_musl_ndk=true
-		break
-		;;
-	"r29-beta1")
-		ndk_ver="29.0.13113456"
-		ndk_ver_name="r29-beta1"
-		is_musl_ndk=true
+	"r29-beta2")
+		ndk_ver="29.0.13599879"
+		ndk_ver_name="r29-beta2"
 		break
 		;;
 	"Quit")
-		log "Exit.."
+		_info "Process canceled."
 		exit
 		;;
 	*)
-		log "Ooops"
+		_warning "('~') ${ERROR}ERROR !!!"
 		;;
 	esac
 done
 
-info "**" "Selected this version $ndk_ver_name ($ndk_ver) to install"
-_warning "Warning! ${BOLD}This NDK only for aarch64"
+_info "Selected this version $ndk_ver_name ($ndk_ver) to install"
+_warning "warning" "${BOLD}This NDK only for aarch64"
 cd "$install_dir" || exit
 # checking if previous installed NDK and cmake
 
 ndk_dir="$ndk_base_dir/$ndk_ver"
-if [[ $is_musl_ndk == true ]]; then
-	ndk_file_name="android-ndk-$ndk_ver_name-aarch64-linux-musl.tar.xz"
-else
-	ndk_file_name="android-ndk-$ndk_ver_name-aarch64-linux-android.tar.xz"
-fi
+ndk_file_name="android-ndk-$ndk_ver_name-aarch64-linux-android.tar.xz"
 
 if [ -d "$ndk_dir" ]; then
 	log "${BOLD}$ndk_dir exists. Deleting NDK $ndk_ver..."
 	rm -rf "$ndk_dir"
 else
-	log "${BOLD}NDK does not exists."
+	info "i" "${BOLD}NDK does not exists."
 fi
 
 if [ -d "$cmake_dir/3.10.1" ]; then
-	log "${BOLD}$cmake_dir/3.10.1 exists. Deleting cmake..."
+	log "$cmake_dir/3.10.1 exists. ${BOLD}Deleting cmake..."
 	rm -rf "$cmake_dir"
 fi
 
 if [ -d "$cmake_dir/3.18.1" ]; then
-	log "${BOLD}$cmake_dir/3.18.1 exists. Deleting cmake..."
+	log "$cmake_dir/3.18.1 exists. ${BOLD}Deleting cmake..."
 	rm -rf "$cmake_dir"
 fi
 
 if [ -d "$cmake_dir/3.22.1" ]; then
-	log "${BOLD}$cmake_dir/3.22.1 exists. Deleting cmake..."
+	echo "$cmake_dir/3.22.1 exists. Deleting cmake..."
 	rm -rf "$cmake_dir"
 fi
 
 if [ -d "$cmake_dir/3.23.1" ]; then
-	log "${BOLD}$cmake_dir/3.23.1 exists. Deleting cmake..."
+	log "$cmake_dir/3.23.1 exists. ${BOLD}Deleting cmake..."
 	rm -rf "$cmake_dir"
 fi
 
-if [[ $is_musl_ndk == true ]]; then
-	download_ndk "$ndk_file_name" "https://github.com/HomuHomu833/android-ndk-custom/releases/download/$ndk_ver_name/$ndk_file_name"
-elif [[ $is_lzhiyong_ndk == true ]]; then
-	download_ndk "$ndk_file_name" "https://github.com/MrIkso/AndroidIDE-NDK/releases/download/ndk/$ndk_file_name"
-else
-	download_ndk "$ndk_file_name" "https://github.com/jzinferno2/termux-ndk/releases/download/v1/$ndk_file_name"
-fi
+download_ndk "$ndk_file_name" "https://github.com/HomuHomu833/android-ndk-custom/releases/download/$ndk_ver_name/$ndk_file_name"
 
 if [ -f "$ndk_file_name" ]; then
-	info2 "+" "Unziping NDK $ndk_ver_name..."
+	echo "Unziping NDK $ndk_ver_name..."
 	if [[ $is_musl_ndk == true ]]; then
 		tar --no-same-owner -xf "$ndk_file_name" --warning=no-unknown-keyword
 	else
@@ -246,16 +185,9 @@ if [ -f "$ndk_file_name" ]; then
 		mv android-ndk-$ndk_ver_name "$ndk_dir"
 	fi
 
-	if [[ $is_musl_ndk == true ]]; then
-    		fix_ndk_musl
-	elif [[ $is_lzhiyong_ndk == false ]]; then
-    		fix_ndk
-	else
-    		ndk_installed=true
-	fi
-
+	fix_ndk_musl
 else
-	error "!" "$ndk_file_name does not exists."
+	log "$ndk_file_name does not exists."
 fi
 
 if [ -d "$cmake_dir" ]; then
@@ -268,7 +200,7 @@ else
 fi
 
 if [[ $ndk_installed == true && $cmake_installed == true ]]; then
-	_success "Installation Finished. NDK has been installed successfully"
+	log "${SUCCESS}Installation Finished. NDK has been installed successfully"
 else
-	_warning "NDK and cmake has been does not installed successfully !"
+	log "${WARNING}NDK and cmake has been does not installed successfully!"
 fi
