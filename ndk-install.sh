@@ -121,6 +121,12 @@ ndk_file_name="android-ndk-$ndk_ver_name-aarch64-linux-musl.tar.xz"
 if [ -d "$ndk_dir" ]; then
 	log "$ndk_dir exists. ${BOLD}Deleting NDK $ndk_ver..."
 	rm -rf "$ndk_dir"
+    if [ -d "$ndk_dir" ]; then
+        rm -r "$ndk_dir"
+    fi
+    if [ -d "$ndk_dir" ]; then
+        rm -r "$ndk_dir"
+    fi
 else
 	info "i" "${BOLD}NDK does not exists."
 fi
