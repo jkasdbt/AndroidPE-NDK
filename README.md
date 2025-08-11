@@ -15,7 +15,6 @@ rkb install ndk
 3. After installation, edit or set `ndkVersion` in your `build.gradle` or `build.gradle.kts` file as follows:
    - If you choose `r27d`, set `ndkVersion` to `"27.3.13750724"`.
    - If you choose `r28c`, set `ndkVersion` to `"28.2.13676358"`.
-   - If you choose `r29-beta2`, set `ndkVersion` to `"29.0.13599879"`.
 <br>
 <br>
 <br>
