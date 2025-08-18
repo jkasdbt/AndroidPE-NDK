@@ -53,8 +53,6 @@ fix_ndk_musl() {
   		cd "$ndk_dir"/shader-tools || exit
     		ln -s linux-arm64 linux-aarch64 
 		ndk_installed=true
-	else
-		_warning "NDK does not exists."
 	fi
 }
 
@@ -78,7 +76,7 @@ installing_cmake() {
 
 log "Select the NDK version you need install : "
 
-select item in r26d r27d r28c r29-beta2 Quit; do
+select item in r26d r27d r28c r29-beta3 Quit; do
 	case $item in
   	"r26d")
 		ndk_ver="26.3.11579264"
@@ -95,8 +93,8 @@ select item in r26d r27d r28c r29-beta2 Quit; do
 		ndk_ver_name="r28c"
 		break
 		;;
-	"r29-beta2")
-		ndk_ver="29.0.13599879"
+	"r29-beta3")
+		ndk_ver="29.0.13846066"
 		ndk_ver_name="r29-beta2"
 		break
 		;;
