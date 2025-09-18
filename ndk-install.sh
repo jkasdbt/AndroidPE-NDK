@@ -80,22 +80,22 @@ select item in r26d r27d r28c r29-beta3 Quit; do
 	case $item in
   	"r26d")
 		ndk_ver="26.3.11579264"
-		ndk_ver_name="r26d"
+		ndk_ver_name="r26"
 		break
 		;;
   	"r27d")
 		ndk_ver="27.3.13750724"
-		ndk_ver_name="r27d"
+		ndk_ver_name="r27"
 		break
 		;;
   	"r28c")
 		ndk_ver="28.2.13676358"
-		ndk_ver_name="r28c"
+		ndk_ver_name="r28"
 		break
 		;;
-	"r29-beta3")
-		ndk_ver="29.0.13846066"
-		ndk_ver_name="r29-beta2"
+      "r29-beta4")
+		ndk_ver="29.0.14033849"
+		ndk_ver_name="r29"
 		break
 		;;
 	"Quit")
