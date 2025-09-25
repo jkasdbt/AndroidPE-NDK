@@ -80,22 +80,26 @@ select item in r26d r27d r28c r29-beta4 Quit; do
 	case $item in
   	"r26d")
 		ndk_ver="26.3.11579264"
-		ndk_ver_name="r26"
+		ndk_ver_name="r26d"
+        ndk_ver_tag="r26"
 		break
 		;;
   	"r27d")
 		ndk_ver="27.3.13750724"
-		ndk_ver_name="r27"
+		ndk_ver_name="r27d"
+        ndk_ver_tag="r27"
 		break
 		;;
   	"r28c")
 		ndk_ver="28.2.13676358"
-		ndk_ver_name="r28"
+		ndk_ver_name="r28c"
+        ndk_ver_tag="r28"
 		break
 		;;
       "r29-beta4")
 		ndk_ver="29.0.14033849"
-		ndk_ver_name="r29"
+		ndk_ver_name="r29-beta4"
+        ndk_ver_tag="r29"
 		break
 		;;
 	"Quit")
@@ -149,7 +153,7 @@ if [ -d "$cmake_dir/3.23.1" ]; then
 	rm -rf "$cmake_dir"
 fi
 
-download_ndk "$ndk_file_name" "https://github.com/HomuHomu833/android-ndk-custom/releases/download/$ndk_ver_name/$ndk_file_name"
+download_ndk "$ndk_file_name" "https://github.com/HomuHomu833/android-ndk-custom/releases/download/$ndk_ver_tag/$ndk_file_name"
 
 if [ -f "$ndk_file_name" ]; then
 	_info "Unziping NDK $ndk_ver_name..."
