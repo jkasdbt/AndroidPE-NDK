@@ -76,7 +76,7 @@ installing_cmake() {
 
 log "Select the NDK version you need install : "
 
-select item in r26d r27d r28c r29-beta4 Quit; do
+select item in r26d r27d r28c r29 Quit; do
 	case $item in
   	"r26d")
 		ndk_ver="26.3.11579264"
