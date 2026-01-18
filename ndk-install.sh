@@ -96,9 +96,9 @@ select item in r26d r27d r28c r29-beta4 Quit; do
         ndk_ver_tag="r28"
 		break
 		;;
-      "r29-beta4")
-		ndk_ver="29.0.14033849"
-		ndk_ver_name="r29-beta4"
+      "r29")
+		ndk_ver="29.0.14206865"
+		ndk_ver_name="r29"
         ndk_ver_tag="r29"
 		break
 		;;
